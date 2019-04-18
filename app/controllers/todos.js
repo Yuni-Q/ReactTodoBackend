@@ -34,7 +34,7 @@ router.put('/:id', isLoggedIn, async (req, res) => {
     content,
   } = req.body;
   const check = req.body.check === true ? 1 : 0;
-  const result = await db.todos.update(
+  const result = await todos.update(
     {
       title,
       content,
@@ -53,7 +53,7 @@ router.delete('/:id', isLoggedIn, async (req, res) => {
   const {
     id,
   } = req.params;
-  const result = await db.todos.destroy({
+  const result = await todos.destroy({
     where: {
       id,
     },
@@ -62,7 +62,7 @@ router.delete('/:id', isLoggedIn, async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-  const result = await db.todos.findOne({
+  const result = await todos.findOne({
     where: {
       id: req.params.id,
     },
