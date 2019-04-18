@@ -20,7 +20,7 @@ router.post('/', isLoggedIn, async (req, res) => {
     title,
     content,
   } = req.body;
-  const result = await db.todos.create({
+  const result = await todos.create({
     title,
     content,
     userId: req.user.id,
