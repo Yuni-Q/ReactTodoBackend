@@ -7,7 +7,11 @@ const { isLoggedIn } = require('../middlewares/checkLogin');
 const router = express.Router();
 
 router.get('/', isLoggedIn, async (req, res) => {
-  const result = await todos.findAll({});
+  const result = await todos.findAll({
+    where: {
+      userId: req.user.id
+    }
+  });
   res.json(resultFormat(true, null, result));
 });
 
