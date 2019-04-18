@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/', isLoggedIn, async (req, res) => {
   const result = await todos.findAll({
     where: {
-      userId: req.user.id
+      userId: req.user.id,
     }
   });
   res.json(resultFormat(true, null, result));
@@ -23,6 +23,7 @@ router.post('/', isLoggedIn, async (req, res) => {
   const result = await db.todos.create({
     title,
     content,
+    userId: req.user.id,
   });
   res.json(resultFormat(true, null, result));
 });
